@@ -1,19 +1,46 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { useFonts, AnonymousPro_700Bold } from '@expo-google-fonts/anonymous-pro';
 
 import { Images } from './img/Images';
 
 function Home() {
   let [fontsLoaded] = useFonts({AnonymousPro_700Bold});
+  const [bgType, setBgType] = React.useState(0);
+  const [rotate, setRotate] = React.useState(false);
+
+  const handlePressNE = () => {
+    setRotate(false);
+    if (bgType == 2) {
+      setBgType(0);
+    } else {
+      setBgType(bgType + 1);
+    }
+  }
+
+  const handlePressSW = () => {
+    setRotate(true);
+    if (bgType == 0) {
+      setBgType(2);
+    } else {
+      setBgType(bgType - 1);
+    }
+  }
   return (
     <View style={styles.container}>
+      {bgType>0 && <ImageBackground
+        style={styles.bgImg}
+        resizeMode='repeat'
+        source={rotate ?
+          (bgType==1 ? Images.bg1_90 : Images.bg2_90) :
+          (bgType==1 ? Images.bg1 : Images.bg2)}
+      />}
       <View style={styles.mainContainer}>
         <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]}>
           <Image style={styles.cakeIcon} resizeMode='contain' source={Images.cake} />
           <Text style={styles.hintText}>CLICK!</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#dfd3c3'}]}>
+        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#dfd3c3'}]} onPress={handlePressNE}>
           <View style={styles.specialContainer}>
             <View style={styles.specialSub}><Text style={styles.specialText}>L</Text></View>
             <View style={styles.specialSub}><Text style={styles.specialText}>O</Text></View>
@@ -21,7 +48,7 @@ function Home() {
             <View style={styles.specialSub}><Text style={styles.specialText}>E</Text></View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#dfd3c3'}]}>
+        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#dfd3c3'}]} onPress={handlePressSW}>
           <Image style={styles.heartIcon} source={Images.heart} />
         </TouchableOpacity>
         <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]}>
@@ -40,6 +67,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#c7b198'
+  },
+  bgImg: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0
   },
   mainContainer: {
       width: '85%',
