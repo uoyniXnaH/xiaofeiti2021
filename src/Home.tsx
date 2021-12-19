@@ -2,18 +2,13 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from './src/Home';
-import { NavigationContainer } from '@react-navigation/native';
-
 const Stack = createStackNavigator();
 
-export default function App() {
+function Home() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text>Main</Text>
+    </View>
   );
 }
 
@@ -25,3 +20,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default Home;
