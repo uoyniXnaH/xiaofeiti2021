@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity, Animated } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useFonts, AnonymousPro_700Bold } from '@expo-google-fonts/anonymous-pro';
 import { useNavigation } from '@react-navigation/native';
@@ -10,12 +10,15 @@ function Birthday() {
   const {navigate} = useNavigation();
   let [fontsLoaded] = useFonts({AnonymousPro_700Bold});
   const [pos, setPos] = React.useState(0);
+  const posAnim = React.useRef(new Animated.Value(0)).current;
 
   const handlePressLeft = () => {
     if (pos == 0) {
       navigate("Home");
       return;
     } else {
+      let offset = wp('70%');
+      Animated.timing(posAnim, {toValue: -offset * (pos-1), duration: 500, useNativeDriver: false}).start();
       setPos(pos - 1);
     }
   }
@@ -25,6 +28,8 @@ function Birthday() {
       navigate("Home");
       return;
     } else {
+      let offset = wp('70%');
+      Animated.timing(posAnim, {toValue: -offset * (pos+1), duration: 500, useNativeDriver: false}).start();
       setPos(pos + 1);
     }
   }
@@ -62,6 +67,13 @@ function Birthday() {
         />
       </View>
       {/* main contents */}
+      <View style={styles.mainContainer}>
+        <Animated.View style={[styles.textContainer, {left: posAnim}]}>
+          <Text style={styles.contents}>SAMPLE1</Text>
+          <Text style={styles.contents}>SAMPLE2</Text>
+          <Text style={styles.contents}>SAMPLE3</Text>
+        </Animated.View>
+      </View>
     </View>
   );
 }
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
   switchContainer: {
     width: '100%',
     position: 'absolute',
-    top: '40%',
+    top: '35%',
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
@@ -107,6 +119,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     borderColor: '#781d42'
+  },
+  mainContainer: {
+    width: '70%',
+    height: '55%',
+    marginTop: 30,
+    overflow: 'hidden'
+  },
+  textContainer: {
+    width: '300%',
+    height: '100%',
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  contents: {
+    width: '33%',
+    height: '100%'
   }
 });
 
