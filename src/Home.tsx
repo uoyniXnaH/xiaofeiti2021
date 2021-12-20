@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { useFonts, AnonymousPro_700Bold } from '@expo-google-fonts/anonymous-pro';
+import { useNavigation } from '@react-navigation/native';
 
 import { Images } from './img/Images';
 
 function Home() {
+  const {navigate} = useNavigation();
   let [fontsLoaded] = useFonts({AnonymousPro_700Bold});
   const [bgType, setBgType] = React.useState(0);
   const [rotate, setRotate] = React.useState(false);
@@ -36,7 +38,7 @@ function Home() {
           (bgType==1 ? Images.bg1 : Images.bg2)}
       />}
       <View style={styles.mainContainer}>
-        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]}>
+        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]} onPress={() => navigate("Birthday")}>
           <Image style={styles.cakeIcon} resizeMode='contain' source={Images.cake} />
           <Text style={styles.hintText}>CLICK!</Text>
         </TouchableOpacity>
