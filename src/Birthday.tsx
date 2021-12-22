@@ -13,6 +13,11 @@ function Birthday() {
   let [f2] = useFonts({KosugiMaru_400Regular});
   const [pos, setPos] = React.useState(0);
   const posAnim = React.useRef(new Animated.Value(0)).current;
+  const opAnim = React.useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    Animated.timing(opAnim, {toValue: 1, duration: 500, useNativeDriver: false}).start();
+  },[])
 
   const handlePressLeft = () => {
     if (pos == 0) {
@@ -69,14 +74,14 @@ function Birthday() {
         />
       </View>
       {/* main contents */}
-      <View style={styles.mainContainer}>
+      <Animated.View style={[styles.mainContainer, {opacity: opAnim}]}>
         <Animated.View style={[styles.textContainer, {left: posAnim}]}>
           <View style={styles.block}>
             <Text style={styles.contents}>老婆生日快乐！</Text>
             <Text style={styles.contents}>今年过得并不容易，各地疫情反反复复，日本入境开了又关。</Text>
             <Text style={styles.contents}>即便如此，我还是想说：老婆生日快乐！</Text>
             <Text style={styles.contents}>因为生日就是需要暂时抛开烦恼和不满，好好去享受。</Text>
-            <Text style={styles.contents}>虽然暂时还无法团聚，但我们还可以隔着手机屏幕，倒上一杯酒，摆上一块小蛋糕（为什么要用蛋糕下酒？），一起吃喝，一起嬉笑（所以为什么要用蛋糕下酒？）</Text>
+            <Text style={styles.contents}>虽然现在还无法团聚，但我们还可以隔着手机屏幕，倒上一杯酒，摆上一块小蛋糕（为什么要用蛋糕下酒？），一起吃喝，一起嬉笑（所以为什么要用蛋糕下酒？）</Text>
           </View>
           <View style={styles.block}>
             <Text style={styles.contents}>时间过得很快，你去年的生日彷佛还在去年。</Text>
@@ -93,7 +98,7 @@ function Birthday() {
             <Text style={styles.contentsJa}>提提、てぇてぇ♡</Text>
           </View>
         </Animated.View>
-      </View>
+      </Animated.View>
     </View>
   );
 }

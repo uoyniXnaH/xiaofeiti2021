@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity, Animated } from 'react-native';
 import { useFonts, AnonymousPro_700Bold } from '@expo-google-fonts/anonymous-pro';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,6 +10,11 @@ function Home() {
   let [fontsLoaded] = useFonts({AnonymousPro_700Bold});
   const [bgType, setBgType] = React.useState(0);
   const [rotate, setRotate] = React.useState(false);
+  const opAnim = React.useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    Animated.timing(opAnim, {toValue: 1, duration: 500, useNativeDriver: false}).start();
+  },[]);
 
   const handlePressNE = () => {
     setRotate(false);
@@ -37,7 +42,7 @@ function Home() {
           (bgType==1 ? Images.bg1_90 : Images.bg2_90) :
           (bgType==1 ? Images.bg1 : Images.bg2)}
       />}
-      <View style={styles.mainContainer}>
+      <Animated.View style={[styles.mainContainer, {opacity: opAnim}]}>
         <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]} onPress={() => navigate("Birthday")}>
           <Image style={styles.cakeIcon} resizeMode='contain' source={Images.cake} />
           <Text style={styles.hintText}>CLICK!</Text>
@@ -53,11 +58,11 @@ function Home() {
         <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#dfd3c3'}]} onPress={handlePressSW}>
           <Image style={styles.heartIcon} source={Images.heart} />
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]}>
+        <TouchableOpacity style={[styles.blockContainer, {backgroundColor:'#a68dad'}]} onPress={() => navigate("Future")}>
           <Image style={styles.cakeIcon} resizeMode='contain' source={Images.plane} />
           <Text style={styles.hintText}>CLICK!</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     </View>
   );
 }
