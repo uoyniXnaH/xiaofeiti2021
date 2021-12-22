@@ -10,6 +10,8 @@
   "dependencies": {
     "@expo-google-fonts/anonymous-pro": "^0.2.0",
     "@expo-google-fonts/inter": "^0.2.0",
+    "@expo-google-fonts/kosugi-maru": "^0.2.0",
+    "@expo-google-fonts/zcool-kuaile": "^0.2.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
     "expo": "~43.0.2",
