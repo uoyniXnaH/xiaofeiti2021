@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity, TouchableWithoutFeedback, Animated, Modal } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, ImageBackground, TouchableOpacity, TouchableWithoutFeedback, Animated, Modal } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useFonts, ZCOOLKuaiLe_400Regular } from '@expo-google-fonts/zcool-kuaile';
 import { KosugiMaru_400Regular } from '@expo-google-fonts/kosugi-maru';
@@ -14,6 +14,8 @@ function Future() {
   const [pos, setPos] = React.useState(0);
   const [lotteryModal, setLotteryModal] = React.useState(false);
   const [lottery, setLottery] = React.useState(0);
+  const [unlockTxt, setUnlockTxt] = React.useState("");
+  const [badUnlockModal, setBadUnlockModal] = React.useState(false);
   const opAnim = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
@@ -24,6 +26,14 @@ function Future() {
     const r = Math.floor(Math.random() * 4);
     setLottery(r);
     setLotteryModal(true);
+  }
+
+  const handleUnlock = () => {
+    if (unlockTxt == "老公最棒") {
+      navigate("Memory");
+    } else if (unlockTxt.includes("狗") || unlockTxt.includes("🐶")) {
+      setBadUnlockModal(true);
+    }
   }
 
   return (
@@ -46,11 +56,25 @@ function Future() {
           <Text style={styles.contents}>也请老婆多多关照了~</Text>
         </View>
       </Animated.View>
-      <View style={styles.lotteryContainer}>
+      <View style={styles.additionContainer}>
         <Text style={styles.lotteryText}>👇点击查看2022年运势👇</Text>
         <TouchableOpacity onPress={handleLottery}>
           <Image style={styles.lotteryIcon} source={Images.crystal_ball} />
         </TouchableOpacity>
+      </View>
+      <View style={styles.additionContainer}>
+        <Text style={styles.lotteryText}>👇输入“老公最棒”解锁隐藏内容👇</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            onChangeText={text => setUnlockTxt(text)}
+            value={unlockTxt}
+            maxLength={20}
+          />
+          <TouchableOpacity onPress={handleUnlock}>
+            <Image style={styles.unlockIcon} source={Images.unlock} />
+          </TouchableOpacity>
+        </View>
       </View>
       <Modal
         visible={lotteryModal}
@@ -73,6 +97,24 @@ function Future() {
                     {lottery==1 && '新的一年，万事如意，身体健康，性福美满。黄还是你黄！'}
                     {lottery==2 && '开开心心，快快乐乐，漂漂亮亮，可可爱爱。你又很膨胀咯'}
                     {lottery==3 && '你完蛋了，你会在第一时间被🐶蹄制裁，洗干净屁股等着吧~'}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+      <Modal
+        visible={badUnlockModal}
+        transparent={true}
+        animationType={'fade'}
+        onRequestClose={() => setBadUnlockModal(false)}
+      >
+        <TouchableWithoutFeedback onPress={() => setBadUnlockModal(false)}>
+          <View style={styles.modalBackground}>
+            <TouchableWithoutFeedback>
+                <View style={styles.badUnlockContainer}>
+                  <Text style={styles.badUnlockContents}>
+                    你才是🐶
                   </Text>
                 </View>
               </TouchableWithoutFeedback>
@@ -126,7 +168,7 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.8)',
     marginBottom: 10
   },
-  lotteryContainer: {
+  additionContainer: {
     marginTop: 30,
     marginBottom: 30,
     paddingHorizontal: 15,
@@ -151,7 +193,7 @@ const styles = StyleSheet.create({
     width: '80%',
     // height: 200,
     borderRadius: 18,
-    backgroundColor: 'white'
+    backgroundColor: '#fcd8d4'
   },
   lotteryContentsTitle: {
     fontSize: 24,
@@ -164,6 +206,38 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 15,
     marginBottom: 20
+  },
+  inputContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 15
+  },
+  input: {
+    width: '50%',
+    fontSize: 16,
+    paddingLeft: 3,
+    marginRight: 10,
+    Color: 'rgba(0,0,0,0.8)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.8)'
+  },
+  unlockIcon: {
+    width: 24,
+    height: 24
+  },
+  badUnlockContainer: {
+    width: '60%',
+    alignItems: 'center',
+    padding: 20,
+    borderRadius: 18,
+    backgroundColor: '#fcd8d4',
+    opacity: 0.85
+  },
+  badUnlockContents: {
+    fontSize: 18,
+    fontFamily: 'ZCOOLKuaiLe_400Regular',
+    color: '#a3423c'
   },
   modalBackground: {
     width: '100%',
