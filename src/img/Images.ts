@@ -10,4 +10,6 @@ export const Images = {
     illust_cake: require('./illust-cake.png'),
     left: require('./chevron_left_black_24dp.svg'),
     right: require('./chevron_right_black_24dp.svg'),
+    paper_plane: require('./paper-plane-route.png'),
+    crystal_ball: require('./crystal-ball.png')
 };
