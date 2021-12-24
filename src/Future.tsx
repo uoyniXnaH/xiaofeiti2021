@@ -62,20 +62,6 @@ function Future() {
           <Image style={styles.lotteryIcon} source={Images.crystal_ball} />
         </TouchableOpacity>
       </View>
-      <View style={styles.additionContainer}>
-        <Text style={styles.lotteryText}>👇输入“老公最棒”解锁隐藏内容👇</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={text => setUnlockTxt(text)}
-            value={unlockTxt}
-            maxLength={20}
-          />
-          <TouchableOpacity onPress={handleUnlock}>
-            <Image style={styles.unlockIcon} source={Images.unlock} />
-          </TouchableOpacity>
-        </View>
-      </View>
       <Modal
         visible={lotteryModal}
         transparent={true}
@@ -97,24 +83,6 @@ function Future() {
                     {lottery==1 && '新的一年，万事如意，身体健康，性福美满。黄还是你黄！'}
                     {lottery==2 && '开开心心，快快乐乐，漂漂亮亮，可可爱爱。你又很膨胀咯'}
                     {lottery==3 && '你完蛋了，你会在第一时间被🐶蹄制裁，洗干净屁股等着吧~'}
-                  </Text>
-                </View>
-              </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
-      <Modal
-        visible={badUnlockModal}
-        transparent={true}
-        animationType={'fade'}
-        onRequestClose={() => setBadUnlockModal(false)}
-      >
-        <TouchableWithoutFeedback onPress={() => setBadUnlockModal(false)}>
-          <View style={styles.modalBackground}>
-            <TouchableWithoutFeedback>
-                <View style={styles.badUnlockContainer}>
-                  <Text style={styles.badUnlockContents}>
-                    你才是🐶
                   </Text>
                 </View>
               </TouchableWithoutFeedback>
