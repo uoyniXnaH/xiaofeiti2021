@@ -1,0 +1,34 @@
+{
+  "files": {
+    "app.js": "/xiaofeiti2021/static/js/app.b74e86f4.chunk.js",
+    "app.js.map": "/xiaofeiti2021/static/js/app.b74e86f4.chunk.js.map",
+    "runtime~app.js": "/xiaofeiti2021/static/js/runtime~app.4b29f8ac.js",
+    "runtime~app.js.map": "/xiaofeiti2021/static/js/runtime~app.4b29f8ac.js.map",
+    "static/js/2.e8645b72.chunk.js": "/xiaofeiti2021/static/js/2.e8645b72.chunk.js",
+    "static/js/2.e8645b72.chunk.js.map": "/xiaofeiti2021/static/js/2.e8645b72.chunk.js.map",
+    "fonts/AnonymousPro_400Regular.ttf": "/xiaofeiti2021/./fonts/AnonymousPro_400Regular.ttf",
+    "fonts/AnonymousPro_400Regular_Italic.ttf": "/xiaofeiti2021/./fonts/AnonymousPro_400Regular_Italic.ttf",
+    "fonts/AnonymousPro_700Bold.ttf": "/xiaofeiti2021/./fonts/AnonymousPro_700Bold.ttf",
+    "fonts/AnonymousPro_700Bold_Italic.ttf": "/xiaofeiti2021/./fonts/AnonymousPro_700Bold_Italic.ttf",
+    "fonts/KosugiMaru_400Regular.ttf": "/xiaofeiti2021/./fonts/KosugiMaru_400Regular.ttf",
+    "fonts/ZCOOLKuaiLe_400Regular.ttf": "/xiaofeiti2021/./fonts/ZCOOLKuaiLe_400Regular.ttf",
+    "favicon-16.png": "/xiaofeiti2021/favicon-16.png",
+    "favicon-32.png": "/xiaofeiti2021/favicon-32.png",
+    "favicon.ico": "/xiaofeiti2021/favicon.ico",
+    "index.html": "/xiaofeiti2021/index.html",
+    "serve.json": "/xiaofeiti2021/serve.json",
+    "static/js/2.e8645b72.chunk.js.LICENSE.txt": "/xiaofeiti2021/static/js/2.e8645b72.chunk.js.LICENSE.txt",
+    "static/media/bg-1-90.png": "/xiaofeiti2021/static/media/bg-1-90.000c14e6.png",
+    "static/media/bg-1.png": "/xiaofeiti2021/static/media/bg-1.95991f4b.png",
+    "static/media/bg-2-90.png": "/xiaofeiti2021/static/media/bg-2-90.b38517d0.png",
+    "static/media/bg-2.png": "/xiaofeiti2021/static/media/bg-2.a5b8b867.png",
+    "static/media/crystal-ball.png": "/xiaofeiti2021/static/media/crystal-ball.1824c3aa.png",
+    "static/media/illust-cake.png": "/xiaofeiti2021/static/media/illust-cake.4eb24d50.png",
+    "static/media/paper-plane-route.png": "/xiaofeiti2021/static/media/paper-plane-route.34098bec.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.4b29f8ac.js",
+    "static/js/2.e8645b72.chunk.js",
+    "static/js/app.b74e86f4.chunk.js"
+  ]
+}
